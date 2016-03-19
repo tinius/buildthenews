@@ -1,4 +1,4 @@
-var map = new L.Map('map', {zoom : 4}).setView([43.555073, 2.580898], 2);
+var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
 
 var ratios = {};
 
@@ -36,7 +36,7 @@ d3.json('geography/countries.geo.json', function(error, json) {
 
 		console.log(ratios);
 
-		L.geoJson(json,
+L.geoJson(json,
 			{ style : styleByRatios })
 		.addTo(map);
 
