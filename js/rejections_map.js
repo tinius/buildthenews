@@ -58,7 +58,7 @@ var styleByApplications = function(feature){
 }
 
 var getGdpList = function(minApplications){
-	
+
 	var l = [];
 
 	for(var cc in dataDict){
@@ -114,7 +114,7 @@ queue()
 				if(row['GNI_per_capita'] !== ''){
 					dataDict[row['Country_Code']]['gdpPerCapita'] = parseFloat(row['GNI_per_capita']);
 				}
-			}		
+			}
 		}
 
 		var gdpList = getGdpList(100);
@@ -133,7 +133,7 @@ queue()
 			 	onEachFeature : onEachFeature,
 				noWrap : true
 			})
- 		.addTo(map);
+ 		//.addTo(map);
  		rLayer = L.geoJson(geojson,
  			{ style : styleByRejections,
 			onEachFeature : onEachFeature,
@@ -190,10 +190,10 @@ function onEachFeature(feature, layer) {
 			//zoomToFeature(e)
 		});
       // e = event
-			layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
-		});
+		layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+	});
 };
 
 function highlightFeature(e) {
