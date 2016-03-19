@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.1.1/chroma.min.js"></script>
+</head>
+<body>
+	<div id="money_threshold">
+		<span class="slider_info slider_figure" id="money_amount"></span>
+		<span class="slider_info small_text_description">annual income</span>
+		<input id="income_slider" type="range" min=0 max=100 oninput="update_percentage(this.value)" onchange="update_percentage(this.value)"></input>
+		<label class="slider_info" for="income_slider">
+			<span class="slider_figure" id="income_percentile"></span><br><span class="small_text_description"> of taxpayers exluded</span>
+		</label>
+		<div id="people_vis">
+		</div>
+	</div><!-- end .slider-->
+	<div id="map"></div>
+	<script src="js/rejections_map.js"></script>
+	<script src="js/income_slider.js"></script>
+</body>
+</html>
