@@ -86,13 +86,19 @@ queue()
 		console.log(dataDict);
 
 		aLayer = L.geoJson(geojson,
- 			{ style : styleByApplications })
+ 			{ style : styleByApplications,
+			 	onEachFeature : onEachFeature,
+				noWrap : true
+			})
  		.addTo(map);
  		rLayer = L.geoJson(geojson,
- 			{ style : styleByRejections })
+ 			{ style : styleByRejections,
+			onEachFeature : onEachFeature,
+			noWrap : true
+			})
  		.addTo(map);
 
-		var baseMaps = {"Rejects" : rLayer, "Applications" : aLayer};
+		var baseMaps = {"Rejection Rates" : rLayer, "Application Numbers" : aLayer};
 
 		var x = L.control.layers(baseMaps).addTo(map);
 
@@ -116,3 +122,57 @@ queue()
 // 		//console.log(ratios);
 
 // 	});
+
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = (props ? '<h4>' + props.properties.name + '</h4>'
+        : 'Click on a location');
+};
+
+info.addTo(map);
+
+function onEachFeature(feature, layer) {
+    //bind click
+    layer.on('click', function (e) {
+			info.update(feature)
+			//zoomToFeature(e)
+		});
+      // e = event
+			layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+		});
+};
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+};
+
+function resetHighlight(e) {
+		aLayer.resetStyle(e.target);
+    rLayer.resetStyle(e.target);
+};
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+};
