@@ -81,8 +81,11 @@ queue()
 
 		console.log(dataDict);
 
-		L.geoJson(geojson,
+		aLayer = L.geoJson(geojson,
  			{ style : styleByApplications })
+ 		.addTo(map);
+ 		rLayer = L.geoJson(geojson,
+ 			{ style : styleByRejections })
  		.addTo(map);
 
 	});
