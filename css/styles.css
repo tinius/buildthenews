@@ -16,3 +16,14 @@
     margin: 0 0 5px;
     color: #777;
 }
+
+.gradient_block {
+	display: inline-block;
+	height: 1.5em;
+	width: 1px;
+}
+
+.gradient {
+	width: 100px;
+	display: inline-block;
+}

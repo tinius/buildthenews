@@ -5,17 +5,27 @@ mapboxAccessToken = "pk.eyJ1IjoidGluaXVzIiwiYSI6ImNpbHo3M2t3ZzAwaGZ2bW01dGZsZDdp
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken,
 {
 	id: 'mapbox.light',
+	noWrap : 'true'
 })
 	.addTo(map);
 
 var dataDict = {};
 
-var rScale = chroma.scale(['blue', '#eee', 'red']).domain([0,0.35]);
-var aScale = chroma.scale(['blue', '#eee', 'red']).domain([0,0.05]);
-var gScale = chroma.scale(['red', '#eee', 'blue']).domain([15,325]);
+var rDomain = [0, 0.35];
+var aDomain = [0, 0.05];
+var gDomain = [15, 325];
+
+var rScale = chroma.scale(['blue', '#eee', 'red']).domain(rDomain);
+var aScale = chroma.scale(['blue', '#eee', 'red']).domain(aDomain);
+var gScale = chroma.scale(['red', '#eee', 'blue']).domain(gDomain);
 
 var aLayer = null;
 var rLayer = null;
+
+var legendObj = {
+	rightLabel : 'few',
+	leftLabel : 'many'
+};
 
 var styleByRejections = function(feature){
 
@@ -141,7 +151,7 @@ queue()
 			})
  		.addTo(map);
 
-		var baseMaps = {"Rejection Rates" : rLayer, "Application Numbers" : aLayer};
+		var baseMaps = {"Visa rejection rates" : rLayer, "Visa application rates" : aLayer};
 
 		var x = L.control.layers(baseMaps).addTo(map);
 
@@ -171,14 +181,63 @@ var info = L.control();
 
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
+    this.buildDiv();
     return this._div;
 };
 
+info.buildDiv = function(){
+
+	var hCountry = '<h4 id="country_h">Tap on a country</h4>';
+	this._div.innerHTML = hCountry;
+
+    var appSpan = document.createElement('span');
+	appSpan.id = 'app_span';
+	this._div.appendChild(appSpan);
+	var rejSpan = document.createElement('span');
+	rejSpan.id = 'rej_span';
+	this._div.appendChild(rejSpan);
+	var rateSpan = document.createElement('span');
+	rateSpan.id = 'rate_span';
+	this._div.appendChild(rateSpan);
+
+	var hLegend = '<h4>Legend</h4>';
+	this._div.innerHTML += hLegend;
+
+
+    var gradient = document.createElement('div');
+    gradient.className += ' gradient';
+
+    var leftLabel = document.createElement('span');
+    leftLabel.innerHTML = legendObj.leftLabel;
+    this._div.appendChild(leftLabel);
+
+    for(var i = rDomain[0]; i <= rDomain[1]; i += (rDomain[1]-rDomain[0])/100){
+    	var s = document.createElement('span');
+    	s.className += ' gradient_block';
+    	s.style['background-color'] = rScale(i);
+    	gradient.appendChild(s);
+    }
+    this._div.appendChild(gradient); 
+
+    var rightLabel = document.createElement('span');
+    rightLabel.innerHTML = legendObj.rightLabel;
+    this._div.appendChild(rightLabel);
+
+}
+
 // method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-    this._div.innerHTML = (props ? '<h4>' + props.properties.name + '</h4>'
-        : 'Click on a location');
+info.update = function (feature) {
+
+	console.log(feature);
+
+	document.querySelector('#country_h').innerHTML = dataDict[feature.id].countryName;
+
+	var hCountry = '<h4>' + feature.properties.name + '</h4>';
+    console.log(dataDict[feature.id]);
+
+	document.querySelector('#app_span').innerHTML = dataDict[feature.id].applications;
+	document.querySelector('#rej_span').innerHTML = dataDict[feature.id].rejections;
+	document.querySelector('#rate_span').innerHTML = dataDict[feature.id].rejectionRate;
 };
 
 info.addTo(map);
@@ -187,7 +246,6 @@ function onEachFeature(feature, layer) {
     //bind click
     layer.on('click', function (e) {
 			info.update(feature)
-			//zoomToFeature(e)
 		});
       // e = event
 		layer.on({
@@ -212,7 +270,7 @@ function highlightFeature(e) {
 };
 
 function resetHighlight(e) {
-		aLayer.resetStyle(e.target);
+	aLayer.resetStyle(e.target);
     rLayer.resetStyle(e.target);
 };
 
