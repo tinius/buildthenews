@@ -12,7 +12,7 @@ function showInfo(data, tabletop) {
     console.log(data);
 
     for(var row of data){
-    	insertP(row.p);
+    	insertP(row.assets);
     }
 
 }
