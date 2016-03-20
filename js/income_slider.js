@@ -63,11 +63,11 @@ function update_percentage(income_percentile) {
   			console.log(123)
   		}
   		else {
-  			d3.select("#income_percentile").text(data[i-1].PercentilePoint + "%");
+  			d3.select("#income_percentile").text(data[i].PercentilePoint + "%");
   		}
   		d3.select("#income_slider").property("value", income_percentile);
   		d3.select("#money_amount").text("£" + numberWithCommas(slider_position.value));
-		people_pictogram(data[i-1].PercentilePoint); 	
+		people_pictogram(data[i].PercentilePoint); 	
   		break;
   	}
   }
