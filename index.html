@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Marry right or live abroad: How the government dictates your love life</title>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css" />
@@ -11,18 +11,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.1.1/chroma.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
     <script src="js/tabletop.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-    <h2>Spousal visas: Applications and rejections</h2>
-    <div id="map"></div>
+   <p> It’s far from romantic. Government intrusion into relationships goes beyond what you might think – your ability to live with the person you marry depends on your gender, a postcode lottery, and now on the origins of your partner.</p>
 
-    <h2>Countries ranked by rejection rate, colour coded by wealth</h2>
+<p>New Home Office statistics show a correlation between spouse nationality and the chances of their visa application being successful.</p>
 
-    <table id="gdp_list">
-    <tr><td>Country</td><td>Rejection rate (%)</td><td>Gross national product ($)</td></tr>
-    </table>
+<p>Spouses from Afghanistan, Algeria and Pakistan are up to five times more likely to be rejected than those from America, Canada or Australia. More than one in three Afghans married to a British citizen are prevented from joining their family in Britain, while on the other end of the spectrum, less than 7% of people from America are rejected.
+</p>
+
+<h3><em>"Immigration policy is a very, very complicated thing. What we are learning now is that when governments get it wrong, it has huge consequences for people who we never expected to be made victims."</em></h3>
+
+<h5 class='quote_attribution'>- Don Flynn, Migrants Rights Network</h5>
+
+<p>"The government refutes any suggestion of discrimination. It says current law welcomes “those who wish to make a life in the UK with their family, work hard and make a contribution. But family life must not be established here at the taxpayer's expense.” But the statistics seem to tell a different story – where your spouse is from has a distinct impact on your ability to have a united family.</p>
+
+<div id="map"></div>
+
+<h3>How does it work?</h3>
+
+<p>In July 2012, changes to family immigration rules introduced different requirements for non-European spouses to be able to join their families in Britain.</p>
+
+<p>In brief, these include:</p>
+<ul>
+    <li>The foreign spouse must speak English to conversational standards;</li>
+    <li>The foreign spouse must pass a citizenship test;</li>
+    <li>The British half of the couple needs a yearly income of &pound;18,600, or &pound;62,500 in cash savings. Assets and any third party financial support don't count to reach this figure. The required salary increases for each non-British child involved, to &pound;22,400 per year for one child, plus &pound;2,400 for each additional non-British child.</li>
+
+
+<div id="savings_calculator">
+    <h2>How long would it take you to save &pound;62,500?</h2>
+        <h3>How much can you afford to save each month (in pounds)?</h3>
+    <div>
+        <input id="user_guess" type="text">
+        <button id="go_button" onclick="return savingsCalculator()">Go</button>
+    </div>
+
+    <div id="output"></div>
+
+</div><!-- #savings-calculator -->
+
+<p>Watch our quick explanation to find out more about the regulations.</p>
+
+-- video here --
+
+<p>The English language requirement might partially explain the difference in success rates of spouses from different nationalities. But Jamaica, whose national language is English, has a rejection rate of 29% – more than four times that of America.</p>
+
+<p>Don Flynn, director of Migrants Rights Network (MRN), an NGO campaigning against the rules, argues the system is very unfair, as it effectively deprives a large number of British citizens of their fundamental right to have a family.</p>
+
+<p>“Families have been made a target of the government’s efforts to drive down net migration,” he says. “The rules have prevented around 18,000 families from being unified in the past three years.”</p>
+
+<iframe id='sc'></iframe>
+
+<p>What worries some other organisations is that the right to a unified family life seems to depend on income. Put bluntly: poor people are deprived of the right to live with who they love.</p>
+
+<p>According to the Organisation of National Statistics, around 40% of British taxpayers fail to reach the £18,600 threshold, so would be barred from living in the UK with their foreign spouse. The threshold is set at 140% of an annual salary on minimum wage.</p>
+
     <!--SLIDER-->
     <div id="money_threshold_slider_graphic">
         <span class="slider_info slider_figure" id="money_amount"></span>
@@ -40,20 +87,29 @@
         </div>
         <div id="people_vis">
         </div>
-    </div><!-- end .slider-->
+    </div>
 
-    <div id="savings_calculator">
-      <h2>Monthly Subscription for Love</h2>
-      <h3>How much can you afford to save each month?</h3>
+<p>Part time workers, the unemployed, women, those living outside London, and other people averaging lower salaries than the rest of the population are the groups hit the hardest.</p>
 
-      <div>
-        <input id="user_guess" type="text">
-        <button id="go_button" onclick="return savingsCalculator()">Go</button>
-      </div>
+-- video here --
 
-      <div id="output"></div>
+<p>Children are among the victims of the rules. Anne Longfield, the Children’s Commissioner of England, says spouse visa laws fail to protect children’s best interests, and it was found that in 72% of cases the existence of children was ignored.</p>
 
-    </div><!-- #savings-calculator -->
+<p>Among the tens of thousands of these cases, is the story of Salli, from England, and Izzat, from Uzbekistan. They fell in love in South Korea and planned their lives together – marriage, life back in England, children.</p>
+
+<p>Part of it went to plan: they got married and Salli got pregnant in 2014. But when she returned to England and Izzat applied for a spouse visa, they found the rules had changed. Salli only worked part time, her savings didn’t reach £62,500 and her parents were not allowed to contribute. So Salli went through pregnancy without her husband.</p>
+
+<p>He was also refused a visa to witness the birth of their daughter, Layla, and for months Salli has struggled with post-natal depression alone.</p>
+
+<p>"I have never been so stressed and depressed in my life. Even if I work I would be extremely lucky to get a job offering a salary of £18,600," she says.</p>
+
+<img src='assets/baby.png' alt='photo of a baby and woman' id='baby'>
+
+    <h2>Countries ranked by rejection rate, colour coded by wealth</h2>
+
+    <table id="gdp_list">
+    <tr><td>Country</td><td>Rejection rate (%)</td><td>Gross national product ($)</td></tr>
+    </table>
 
     <script src="js/savingscalculator.js"></script>
     <script src="js/rejections_map.js"></script>
