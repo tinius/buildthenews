@@ -64,3 +64,69 @@ body {
 td {
 	padding: 0.5em;
 }
+
+.legend_label {
+	padding-bottom: 5px;
+	margin: 0 5px;
+	/* text-transform: uppercase; */
+}
+
+div.gradient {
+	vertical-align: -5px;
+}
+
+p a {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	color: black;
+	box-shadow: inset 0 -5px 0 lightblue;
+	text-decoration: none;
+	transition: background .20s linear;
+}
+
+p a:hover {
+	background-color: lightblue;
+}
+
+/* Calculator CSS */
+
+div#output {
+  margin: 1em, auto;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+input#user_guess {
+  border: 5px solid rgb(1, 70, 54);
+  height: 3em;
+  box-sizing: border-box;
+  vertical-align: -1px;
+}
+
+button#go_button {
+  text-transform: uppercase;
+  height: 3em;
+  border: 5px solid rgb(1, 70, 54);
+  box-sizing: border-box;
+  vertical-align: baseline;
+  background-color: #fff;
+}
+
+div#savings_calculator {
+	border: dashed 0.5px black;
+	padding: 10px;
+
+}
+
+@media only screen and (max-width: 720px) {
+	#map {
+		height: 80vw;
+		width: 96%;
+		margin: auto;
+	}
+}

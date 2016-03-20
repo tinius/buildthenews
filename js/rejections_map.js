@@ -17,6 +17,14 @@ function loadAssets(data, tabletop) {
 
 }
 
+
+var dataIndex = 0;
+
+var datasets = {
+	'Visa application rates' : 'spousal visa application rate',
+	'Visa rejection rates' : 'spousal visa rejection rate'
+}
+
 function insertP(text) {
 	var p = document.createElement('p')
 	p.className += ' story';
@@ -30,6 +38,10 @@ function insertP(text) {
 
 
 var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
+
+function onOverlayAdd(e){
+    console.log(e);
+}
 
 map.getPanes().tilePane.style.zIndex=650;
 map.getPanes().tilePane.style.pointerEvents = 'none';
@@ -70,14 +82,14 @@ var gDomain = [15, 325];
 
 var rScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(rDomain);
 var aScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(aDomain);
-var gScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(gDomain);
+var gScale = chroma.scale([BAD_COLOUR, GOOD_COLOUR]).domain(gDomain);
 
 var aLayer = null;
 var rLayer = null;
 
 var legendObj = {
-	rightLabel : 'few',
-	leftLabel : 'many'
+	leftLabel : 'low',
+	rightLabel : 'high'
 };
 
 
@@ -117,7 +129,6 @@ var styleByApplications = function(feature){
 	if(dataObj !== undefined){
 		if(dataObj.applications >= 200){
 			var appRate = dataObj.applications/dataObj.population*1000;
-			console.log(appRate);
 			style.fillColor = aScale(appRate);
 		}
 	}
@@ -126,7 +137,7 @@ var styleByApplications = function(feature){
 
 }
 
-var getGdpList = function(minApplications){
+var getGdpLists = function(minApplications, size){
 
 	var l = [];
 
@@ -136,11 +147,16 @@ var getGdpList = function(minApplications){
 		}
 	}
 
+	console.log("full list: " + l.length);
+
 	l.sort(function(a, b){
 		return b.rejectionRate - a.rejectionRate;
 	});
 
-	return l;
+	console.log(size);
+	console.log(l.slice(size));
+
+	return [l.slice(0, size), l.slice(-size)]
 }
 
 queue()
@@ -186,9 +202,11 @@ queue()
 			}
 		}
 
-		var gdpList = getGdpList(200);
+		var lists = getGdpLists(200, 5);
+		var top5 = lists[0];
+		var bottom5 = lists[1];
 
-		for(var item of gdpList){
+		for(var item of top5){
 			var tr = document.createElement('tr');
 			tr.innerHTML = '<td>' + item.countryName + '</td><td>' + prettify(item.rejectionRate) + '</td><td>'
 			+ item.gdpPerCapita + '</td>';
@@ -213,6 +231,9 @@ queue()
 		var baseMaps = {"Visa rejection rates" : rLayer, "Visa application rates" : aLayer};
 
 		var x = L.control.layers(baseMaps).addTo(map);
+
+		addHandlers();
+
 
 	});
 
@@ -259,15 +280,18 @@ info.buildDiv = function(){
 	rateSpan.id = 'rate_span';
 	this._div.appendChild(rateSpan);
 
-	var hLegend = '<h4>Legend</h4>';
+	var hLegend = '<h4 id="legend_h">Legend</h4>';
 	this._div.innerHTML += hLegend;
 
+	var info_h5 = '<h5 id="dataset">spousal visa rejections rate</h5>';
+	this._div.innerHTML += info_h5;
 
     var gradient = document.createElement('div');
     gradient.className += ' gradient';
 
     var leftLabel = document.createElement('span');
     leftLabel.innerHTML = legendObj.leftLabel;
+    leftLabel.className += 'legend_label';
     this._div.appendChild(leftLabel);
 
     for(var i = rDomain[0]; i <= rDomain[1]; i += (rDomain[1]-rDomain[0])/100){
@@ -280,6 +304,7 @@ info.buildDiv = function(){
 
     var rightLabel = document.createElement('span');
     rightLabel.innerHTML = legendObj.rightLabel;
+    rightLabel.className += 'legend_label';
     this._div.appendChild(rightLabel);
 
 }
@@ -332,3 +357,8 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 };
 
+map.on('baselayerchange', function(o){
+
+	document.querySelector('#dataset').innerHTML = datasets[o.name];
+	console.log(name);
+});
