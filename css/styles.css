@@ -87,3 +87,11 @@ p a {
 p a:hover {
 	background-color: lightblue;
 }
+
+@media only screen and (max-width: 720px) {
+	#map {
+		height: 80vw;
+		width: 96%;
+		margin: auto;
+	}
+}
