@@ -272,13 +272,19 @@ info.buildDiv = function(){
 
     var appSpan = document.createElement('span');
 	appSpan.id = 'app_span';
+	appSpan.className += 'legend_span';
 	this._div.appendChild(appSpan);
+
 	var rejSpan = document.createElement('span');
 	rejSpan.id = 'rej_span';
-	this._div.appendChild(rejSpan);
+	rejSpan.className += 'legend_span';
+	this._div.appendChild(rejSpan)
+
 	var rateSpan = document.createElement('span');
 	rateSpan.id = 'rate_span';
+	rateSpan.className += 'legend_span';
 	this._div.appendChild(rateSpan);
+
 
 	var hLegend = '<h4 id="legend_h">Legend</h4>';
 	this._div.innerHTML += hLegend;
@@ -319,9 +325,9 @@ info.update = function (feature) {
 	var hCountry = '<h4>' + feature.properties.name + '</h4>';
     console.log(dataDict[feature.id]);
 
-	document.querySelector('#app_span').innerHTML = dataDict[feature.id].applications;
-	document.querySelector('#rej_span').innerHTML = dataDict[feature.id].rejections;
-	document.querySelector('#rate_span').innerHTML = dataDict[feature.id].rejectionRate;
+	document.querySelector('#app_span').innerHTML = 'applications: ' + dataDict[feature.id].applications + '<br>';
+	document.querySelector('#rej_span').innerHTML = 'rejections: ' + dataDict[feature.id].rejections + '<br>';
+	document.querySelector('#rate_span').innerHTML = 'rejection ratio: ' + prettify(dataDict[feature.id].rejectionRate) + '% <br><br>';
 };
 
 info.addTo(map);
