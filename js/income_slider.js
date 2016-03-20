@@ -85,12 +85,12 @@ function people_pictogram(percentage) {
 			if ((i < percentage) && (slider_position.value != 0)) {
 				console.log(percentage)
 				for (var j = 0; j < person[i].childNodes.length; j++) {
-					person[i].childNodes[j].style.fill = "lightblue" //cannot afford
+					person[i].childNodes[j].style.fill = "#014636" //cannot afford
 				}
 			}
 			else {
 				for (var j = 0; j < person[i].childNodes.length; j++) {
-					person[i].childNodes[j].style.fill = "#014636"; //cannot afford
+					person[i].childNodes[j].style.fill = "lightblue"; //cannot afford
 				}
 			}
 		}
