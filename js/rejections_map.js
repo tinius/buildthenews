@@ -1,13 +1,67 @@
+var spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JZmLBDirvdMloJC8R-F8mvbQeyi9rzrcY9xx24ux-6E/pubhtml'
+
+Tabletop.init({
+	key: "1JZmLBDirvdMloJC8R-F8mvbQeyi9rzrcY9xx24ux-6E",
+    callback: showInfo,
+    simpleSheet: true
+	});
+
+
+function showInfo(data, tabletop) {
+    alert("Successfully processed!")
+    console.log(data);
+
+    for(var row of data){
+    	insertP(row.p);
+    }
+
+}
+
+function insertP(text) {
+	var p = document.createElement('p')
+	p.className += ' story';
+	p.innerHTML = text;
+
+	document.querySelector('body').appendChild(p);
+
+	return p;
+
+}
+
+
 var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
+
+map.getPanes().tilePane.style.zIndex=650;
+map.getPanes().tilePane.style.pointerEvents = 'none';
+
+var GOOD_COLOUR = 'blue';
+var BAD_COLOUR = 'red';
+var MIDDLE_COLOUR = '#eee';
+var NO_DATA_COLOUR = 'black';
+
+//map.getPane('labels').style.zIndex = 650;
+//map.getPane('labels').style.pointerEvents = 'none';
+
+var collapseTable = function(){
+
+}
 
 mapboxAccessToken = "pk.eyJ1IjoidGluaXVzIiwiYSI6ImNpbHo3M2t3ZzAwaGZ2bW01dGZsZDdpcjYifQ.nHUtnjssR_9U0c059vGYlA";
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken,
-{
-	id: 'mapbox.light',
-	noWrap : 'true'
+// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + mapboxAccessToken,
+// {
+// 	id: 'mapbox.light',
+// 	noWrap : 'true'
+// })
+// 	.addTo(map);
+
+var labelsLayer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png',{
+  attribution : '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  noWrap : 'true',
+  pane : 'labels'
 })
-	.addTo(map);
+
+labelsLayer.addTo(map);
 
 var dataDict = {};
 
@@ -27,11 +81,16 @@ var legendObj = {
 	leftLabel : 'many'
 };
 
+
+var prettify = function(percentage){
+	return (percentage*100).toFixed(2);
+}
+
 var styleByRejections = function(feature){
 
 	var style = {
-		fillOpacity : 0.4,
-		opacity : 0.3,
+		fillOpacity : 1,
+		opacity : 1,
 		color : '#000',
 		weight: 0.5
 	}
@@ -48,8 +107,8 @@ var styleByRejections = function(feature){
 var styleByApplications = function(feature){
 
 	var style = {
-		fillOpacity : 0.4,
-		opacity : 0.3,
+		fillOpacity : 1,
+		opacity : 1,
 		color : '#000',
 		weight: 0.5
 	}
@@ -127,11 +186,12 @@ queue()
 			}
 		}
 
-		var gdpList = getGdpList(100);
+		var gdpList = getGdpList(200);
 
 		for(var item of gdpList){
 			var tr = document.createElement('tr');
-			tr.innerHTML = '<td>' + item.countryName + '</td>';
+			tr.innerHTML = '<td>' + item.countryName + '</td><td>' + prettify(item.rejectionRate) + '</td><td>'
+			+ item.gdpPerCapita + '</td>';
 			document.querySelector('#gdp_list').appendChild(tr);
 			if(item.gdpPerCapita !== undefined){
 				tr.style['background-color'] = gScale(Math.sqrt(item.gdpPerCapita));
@@ -143,13 +203,12 @@ queue()
 			 	onEachFeature : onEachFeature,
 				noWrap : true
 			})
- 		//.addTo(map);
+ 		.addTo(map);
  		rLayer = L.geoJson(geojson,
  			{ style : styleByRejections,
 			onEachFeature : onEachFeature,
 			noWrap : true
 			})
- 		.addTo(map);
 
 		var baseMaps = {"Visa rejection rates" : rLayer, "Visa application rates" : aLayer};
 
@@ -277,3 +336,4 @@ function resetHighlight(e) {
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 };
+

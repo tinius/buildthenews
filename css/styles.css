@@ -1,6 +1,6 @@
 #map {
-	height: 800px;
-	width: 98%;
+	height: 50vw;
+	width: 96%;
 	margin: auto;
 }
 
@@ -26,4 +26,12 @@
 .gradient {
 	width: 100px;
 	display: inline-block;
+}
+
+#div {
+	background-color: #888;
+}
+
+td {
+	padding: 0.5em;
 }
