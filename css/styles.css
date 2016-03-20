@@ -1,3 +1,7 @@
+h1 {
+	font-size: 2.6em;
+}
+
 body {
 	font-family: helvetica, sans-serif;
 	margin: 0;
@@ -12,6 +16,14 @@ body {
 
 #money_threshold {
 	text-align: center
+}
+
+.end_line {
+
+	border-width: 0.25em;
+	border: solid #014636 0.5em;
+	background-color: #014636;
+	margin-bottom: 30vh;
 }
 
 .slider_info {
@@ -47,6 +59,15 @@ body {
     margin: 0 0 5px;
     color: #777;
 }
+
+h4 {
+
+	margin-top: 0.2em;
+	font-weight: 400;
+	font-size: 1.2em;
+	font-style: italic;
+}
+
 
 .gradient_block {
 	display: inline-block;
