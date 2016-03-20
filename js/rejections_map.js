@@ -17,7 +17,13 @@ function loadAssets(data, tabletop) {
 
 }
 
-var selectedDataSet = null;
+
+var dataIndex = 0;
+
+var datasets = {
+	'Visa application rates' : 'spousal visa application rate',
+	'Visa rejection rates' : 'spousal visa rejection rate'
+}
 
 function insertP(text) {
 	var p = document.createElement('p')
@@ -32,8 +38,6 @@ function insertP(text) {
 
 
 var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
-
-map.on('layeradd', onOverlayAdd);
 
 function onOverlayAdd(e){
     console.log(e);
@@ -125,7 +129,6 @@ var styleByApplications = function(feature){
 	if(dataObj !== undefined){
 		if(dataObj.applications >= 200){
 			var appRate = dataObj.applications/dataObj.population*1000;
-			console.log(appRate);
 			style.fillColor = aScale(appRate);
 		}
 	}
@@ -229,6 +232,9 @@ queue()
 
 		var x = L.control.layers(baseMaps).addTo(map);
 
+		addHandlers();
+
+
 	});
 
 // d3.json('geography/countries.geo.json', function(error, json) {
@@ -274,9 +280,11 @@ info.buildDiv = function(){
 	rateSpan.id = 'rate_span';
 	this._div.appendChild(rateSpan);
 
-	var hLegend = '<h4># spousal visa applications</h4>';
+	var hLegend = '<h4 id="legend_h">Legend</h4>';
 	this._div.innerHTML += hLegend;
 
+	var info_h5 = '<h5 id="dataset">spousal visa rejections rate</h5>';
+	this._div.innerHTML += info_h5;
 
     var gradient = document.createElement('div');
     gradient.className += ' gradient';
@@ -349,3 +357,8 @@ function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
 };
 
+map.on('baselayerchange', function(o){
+
+	document.querySelector('#dataset').innerHTML = datasets[o.name];
+	console.log(name);
+});
