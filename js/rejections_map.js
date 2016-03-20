@@ -17,6 +17,8 @@ function loadAssets(data, tabletop) {
 
 }
 
+var selectedDataSet = null;
+
 function insertP(text) {
 	var p = document.createElement('p')
 	p.className += ' story';
@@ -30,6 +32,12 @@ function insertP(text) {
 
 
 var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
+
+map.on('layeradd', onOverlayAdd);
+
+function onOverlayAdd(e){
+    console.log(e);
+}
 
 map.getPanes().tilePane.style.zIndex=650;
 map.getPanes().tilePane.style.pointerEvents = 'none';
@@ -76,8 +84,8 @@ var aLayer = null;
 var rLayer = null;
 
 var legendObj = {
-	rightLabel : 'few',
-	leftLabel : 'many'
+	leftLabel : 'low',
+	rightLabel : 'high'
 };
 
 
@@ -266,7 +274,7 @@ info.buildDiv = function(){
 	rateSpan.id = 'rate_span';
 	this._div.appendChild(rateSpan);
 
-	var hLegend = '<h4>Legend</h4>';
+	var hLegend = '<h4># spousal visa applications</h4>';
 	this._div.innerHTML += hLegend;
 
 
@@ -275,6 +283,7 @@ info.buildDiv = function(){
 
     var leftLabel = document.createElement('span');
     leftLabel.innerHTML = legendObj.leftLabel;
+    leftLabel.className += 'legend_label';
     this._div.appendChild(leftLabel);
 
     for(var i = rDomain[0]; i <= rDomain[1]; i += (rDomain[1]-rDomain[0])/100){
@@ -287,6 +296,7 @@ info.buildDiv = function(){
 
     var rightLabel = document.createElement('span');
     rightLabel.innerHTML = legendObj.rightLabel;
+    rightLabel.className += 'legend_label';
     this._div.appendChild(rightLabel);
 
 }
