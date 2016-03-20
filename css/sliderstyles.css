@@ -1,0 +1,27 @@
+body {
+	font-family: helvetica, sans-serif;
+}
+
+#money_threshold {
+	text-align: center
+}
+
+.slider_info {
+	display: block;
+}
+
+.slider_figure {
+	height: 1em;
+	padding: 0.1em;
+	font-size: 3em
+}
+
+#people_vis {
+	width: 50%;
+	margin: auto;
+}
+
+
+#income_slider {
+	width: 50%;
+}
