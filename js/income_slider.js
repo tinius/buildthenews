@@ -1,5 +1,5 @@
 var slider_position = document.getElementById("income_slider")
-
+var threshold_text = document.getElementById("threshold_text")
 
 var slider_max = 120000
 
@@ -63,14 +63,15 @@ function update_percentage(income_percentile) {
   			console.log(123)
   		}
   		else {
-  			d3.select("#income_percentile").text(data[i-1].PercentilePoint + "%");
+  			d3.select("#income_percentile").text(data[i].PercentilePoint + "%");
   		}
   		d3.select("#income_slider").property("value", income_percentile);
   		d3.select("#money_amount").text("£" + numberWithCommas(slider_position.value));
-		people_pictogram(data[i-1].PercentilePoint); 	
+		people_pictogram(data[i].PercentilePoint); 	
   		break;
   	}
   }
+  show_thresholds(income_percentile)
 }
 
 //thousands separator
@@ -83,19 +84,43 @@ function people_pictogram(percentage) {
 	for (var i = 0; i < 100; i++) {
 		if (person[i] != undefined) {
 			if ((i < percentage) && (slider_position.value != 0)) {
-				console.log(percentage)
 				for (var j = 0; j < person[i].childNodes.length; j++) {
-					person[i].childNodes[j].style.fill = "lightblue" //cannot afford
+					person[i].childNodes[j].style.fill = "#014636" //cannot afford
 				}
 			}
 			else {
 				for (var j = 0; j < person[i].childNodes.length; j++) {
-					person[i].childNodes[j].style.fill = "#014636"; //cannot afford
+					person[i].childNodes[j].style.fill = "lightblue"; //cannot afford
 				}
 			}
 		}
 	}
 }
+
+// 
+function show_thresholds(slider_value) {
+
+	if (slider_value <= 18600) {
+		threshold_text.style.opacity = 0
+		threshold_text.innerHTML ="£18,600 - Salary threshold for a spouse"
+		threshold_text.style.opacity = 1
+	}
+	else if (slider_value <= 22400) {
+		threshold_text.style.opacity = 0
+		threshold_text.innerHTML = "£22,400 - Salary threshold for a spouse and one child"
+		threshold_text.style.opacity = 1
+	}
+	else if (slider_value <= 24800) {
+		threshold_text.style.opacity = 0
+		threshold_text.innerHTML = "£24,800 - Salary threshold for a spouse and two children"
+		threshold_text.style.opacity = 1
+	}
+	else {
+		threshold_text.innerHTML = ""
+		threshold_text.style.opacity = 0
+	}
+}
+
 
 //set slider max
 slider_position.max = slider_max;

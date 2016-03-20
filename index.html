@@ -24,13 +24,20 @@
     <tr><td>Country</td><td>Rejection rate (%)</td><td>Gross national product ($)</td></tr>
     </table>
     <!--SLIDER-->
-    <div id="money_threshold">
+    <div id="money_threshold_slider_graphic">
         <span class="slider_info slider_figure" id="money_amount"></span>
         <span class="slider_info small_text_description">annual income</span>
-        <input id="income_slider" type="range" min=0 max=100 oninput="update_percentage(this.value)" onchange="update_percentage(this.value)"></input>
+        <input id="income_slider" type="range" min=0 max=120000 oninput="update_percentage(this.value)" onchange="update_percentage(this.value)"></input>
+        <div class="slider_ticks_div">
+            <span class="slider_tick" id="start_value">&pound;0</span>
+            <span class="slider_tick" id="end_value">&pound;120,000&#43;</span>
+        </div>
         <label class="slider_info" for="income_slider">
             <span class="slider_figure" id="income_percentile"></span><br><span class="small_text_description"> of taxpayers exluded</span>
         </label>
+        <div class="threshold_div">
+            <p id="threshold_text"></p>
+        </div>
         <div id="people_vis">
         </div>
     </div><!-- end .slider-->
