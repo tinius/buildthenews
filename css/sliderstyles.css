@@ -1,12 +1,24 @@
 body {
-	font-family: helvetica, sans-serif;
+	font-family: Georgia, serif;
 }
 
-#money_threshold {
+/* All same width and centered */
+
+#people_vis, .slider_ticks_div, #income_slider, #threshold_text  {
+	width: 50%;
+	margin: auto;
+}
+
+/* person */
+
+/* Info text */
+
+#money_threshold_slider_graphic {
 	text-align: center
 }
 
 .slider_info {
+	clear: both;
 	display: block;
 }
 
@@ -16,12 +28,33 @@ body {
 	font-size: 3em
 }
 
-#people_vis {
-	width: 50%;
-	margin: auto;
+/* tick styles */
+
+.slider_tick {
+	font-size: 0.8em;
+}
+
+#start_value {
+	float: left;
+}
+
+#end_value {
+	float: right;
+}
+
+/* threshold styles */
+
+#threshold_text {
+	width: 30em;
+	background: #eee;
+	height: 1em;
+	padding: 0.1em;
+	margin: 0.5em auto;
+	-webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 
-#income_slider {
-	width: 50%;
-}
