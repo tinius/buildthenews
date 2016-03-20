@@ -139,7 +139,7 @@ button#go_button {
 }
 
 div#savings_calculator {
-	
+
 	padding: 10px;
 
 }
@@ -183,5 +183,13 @@ div#container {
 		height: 80vh;
 		width: 96%;
 		margin: auto;
+	}
+
+	div#container {
+		opacity: 1;
+	}
+
+	#headline_video {
+		display: none;
 	}
 }
