@@ -327,7 +327,7 @@ info.update = function (feature) {
 
 	document.querySelector('#app_span').innerHTML = 'applications: ' + dataDict[feature.id].applications + '<br>';
 	document.querySelector('#rej_span').innerHTML = 'rejections: ' + dataDict[feature.id].rejections + '<br>';
-	document.querySelector('#rate_span').innerHTML = 'rejection ratio: ' + prettify(dataDict[feature.id].rejectionRate) + '% <br>';
+	document.querySelector('#rate_span').innerHTML = 'rejection ratio: ' + prettify(dataDict[feature.id].rejectionRate) + '% <br><br>';
 };
 
 info.addTo(map);
