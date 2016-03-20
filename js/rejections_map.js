@@ -221,12 +221,12 @@ queue()
 			 	onEachFeature : onEachFeature,
 				noWrap : true
 			})
- 		.addTo(map);
  		rLayer = L.geoJson(geojson,
  			{ style : styleByRejections,
 			onEachFeature : onEachFeature,
 			noWrap : true
 			})
+ 		.addTo(map);
 
 		var baseMaps = {"Visa rejection rates" : rLayer, "Visa application rates" : aLayer};
 
