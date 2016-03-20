@@ -2,13 +2,13 @@ var spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JZmLBDirvdMloJC8R
 
 Tabletop.init({
 	key: "1JZmLBDirvdMloJC8R-F8mvbQeyi9rzrcY9xx24ux-6E",
-    callback: showInfo,
+    callback: loadAssets,
     simpleSheet: true
 	});
 
 
-function showInfo(data, tabletop) {
-    alert("Successfully processed!")
+function loadAssets(data, tabletop) {
+
     console.log(data);
 
     for(var row of data){
@@ -34,10 +34,9 @@ var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
 map.getPanes().tilePane.style.zIndex=650;
 map.getPanes().tilePane.style.pointerEvents = 'none';
 
-var GOOD_COLOUR = 'blue';
-var BAD_COLOUR = 'red';
-var MIDDLE_COLOUR = '#eee';
-var NO_DATA_COLOUR = 'black';
+var GOOD_COLOUR = '#ffffad';
+var BAD_COLOUR = '#ffd51c';
+var NO_DATA_COLOUR = '#eee';
 
 //map.getPane('labels').style.zIndex = 650;
 //map.getPane('labels').style.pointerEvents = 'none';
@@ -69,9 +68,9 @@ var rDomain = [0, 0.35];
 var aDomain = [0, 0.05];
 var gDomain = [15, 325];
 
-var rScale = chroma.scale(['blue', '#eee', 'red']).domain(rDomain);
-var aScale = chroma.scale(['blue', '#eee', 'red']).domain(aDomain);
-var gScale = chroma.scale(['red', '#eee', 'blue']).domain(gDomain);
+var rScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(rDomain);
+var aScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(aDomain);
+var gScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(gDomain);
 
 var aLayer = null;
 var rLayer = null;
@@ -91,7 +90,8 @@ var styleByRejections = function(feature){
 	var style = {
 		fillOpacity : 1,
 		opacity : 1,
-		color : '#000',
+		fillColor : NO_DATA_COLOUR,
+		color : NO_DATA_COLOUR,
 		weight: 0.5
 	}
 
@@ -109,7 +109,7 @@ var styleByApplications = function(feature){
 	var style = {
 		fillOpacity : 1,
 		opacity : 1,
-		color : '#000',
+		color : NO_DATA_COLOUR,
 		weight: 0.5
 	}
 
@@ -306,11 +306,6 @@ function onEachFeature(feature, layer) {
     layer.on('click', function (e) {
 			info.update(feature)
 		});
-      // e = event
-		layer.on({
-      mouseover: highlightFeature,
-      mouseout: resetHighlight,
-	});
 };
 
 function highlightFeature(e) {
