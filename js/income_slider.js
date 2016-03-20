@@ -6,15 +6,16 @@ var slider_max = 120000
 var data
 
 var width = 100+"%"
-var height = 500
+var height = 360
 
 var svg = d3.select("#people_vis")
 			.append("svg")
 			.attr("width", width)
 			.attr("height", height)
+			.attr("viewbox", "0 0 100 100")
 
 var y_coord = 0
-var x_coord = 0
+var x_coord = -1
 
 for (var i = 0; i < 100; i++) {
 	var person = svg.append("g")
@@ -34,7 +35,7 @@ for (var i = 0; i < 100; i++) {
 		.attr("class", "body")
 	if ((i % 20 === 0) && (i != 0)) {
 		y_coord +=1
-		x_coord = 0
+		x_coord = -1
 	}
 	x_coord += 1
 	person.attr("transform", "translate(" + x_coord * 25 + "," + y_coord * 65 + ")")

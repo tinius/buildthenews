@@ -1,5 +1,38 @@
-body {
+#container {
 	font-family: Georgia, serif;
+	width: 100%;
+	max-width: 700px;
+	margin: auto;
+}
+
+/* story styling  - Ben and Alessio's stuff */
+
+#baby {
+	width: 90%;
+	display: block;
+	margin: auto;
+	max-width: 500px;
+}
+
+.image_caption {
+	font-style: italic;
+	font-size: 0.8em;
+	margin-top: 2em;
+}
+
+.align_center {
+	text-align: center
+}
+
+#pull_quote {
+	width: 100%;
+	background: #eee;
+	font-size: 1.4em;
+	margin-bottom: -0.5em
+}
+
+li {
+	margin: 0.5em 0em;
 }
 
 /* MAP LEGEND */
@@ -16,6 +49,10 @@ body {
 #people_vis, .slider_ticks_div, #income_slider, #threshold_text  {
 	width: 50%;
 	margin: auto;
+}
+
+#people_vis {
+	width: 540px
 }
 
 /* Info text */
@@ -52,7 +89,7 @@ body {
 /* threshold styles */
 
 #threshold_text {
-	width: 30em;
+	width: 27em;
 	background: #eee;
 	height: 1em;
 	padding: 0.1em;
