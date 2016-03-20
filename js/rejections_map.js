@@ -1,21 +1,21 @@
 var spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JZmLBDirvdMloJC8R-F8mvbQeyi9rzrcY9xx24ux-6E/pubhtml'
 
-Tabletop.init({
-	key: "1JZmLBDirvdMloJC8R-F8mvbQeyi9rzrcY9xx24ux-6E",
-    callback: loadAssets,
-    simpleSheet: true
-	});
+// Tabletop.init({
+// 	key: "1JZmLBDirvdMloJC8R-F8mvbQeyi9rzrcY9xx24ux-6E",
+//     callback: loadAssets,
+//     simpleSheet: true
+// 	});
 
 
-function loadAssets(data, tabletop) {
+// function loadAssets(data, tabletop) {
 
-    console.log(data);
+//     console.log(data);
 
-    for(var row of data){
-    	insertP(row.assets);
-    }
+//     for(var row of data){
+//     	insertP(row.assets);
+//     }
 
-}
+// }
 
 
 var dataIndex = 0;
@@ -206,15 +206,15 @@ queue()
 		var top5 = lists[0];
 		var bottom5 = lists[1];
 
-		for(var item of top5){
-			var tr = document.createElement('tr');
-			tr.innerHTML = '<td>' + item.countryName + '</td><td>' + prettify(item.rejectionRate) + '</td><td>'
-			+ item.gdpPerCapita + '</td>';
-			document.querySelector('#gdp_list').appendChild(tr);
-			if(item.gdpPerCapita !== undefined){
-				tr.style['background-color'] = gScale(Math.sqrt(item.gdpPerCapita));
-			}
-		}
+		// for(var item of top5){
+		// 	var tr = document.createElement('tr');
+		// 	tr.innerHTML = '<td>' + item.countryName + '</td><td>' + prettify(item.rejectionRate) + '</td><td>'
+		// 	+ item.gdpPerCapita + '</td>';
+		// 	document.querySelector('#gdp_list').appendChild(tr);
+		// 	if(item.gdpPerCapita !== undefined){
+		// 		tr.style['background-color'] = gScale(Math.sqrt(item.gdpPerCapita));
+		// 	}
+		// }
 
 		aLayer = L.geoJson(geojson,
  			{ style : styleByApplications,
@@ -368,3 +368,8 @@ map.on('baselayerchange', function(o){
 	document.querySelector('#dataset').innerHTML = datasets[o.name];
 	console.log(name);
 });
+
+window.onload = function() {
+	var iframeElement   = document.querySelector('#sc');
+	var widget1         = SC.Widget(iframeElement);
+}
