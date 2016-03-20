@@ -3,7 +3,7 @@ body {
 }
 
 #map {
-	height: 50vw;
+	height: 80vh;
 	width: 96%;
 	margin: auto;
 }
@@ -90,7 +90,7 @@ p a:hover {
 
 @media only screen and (max-width: 720px) {
 	#map {
-		height: 80vw;
+		height: 80vh;
 		width: 96%;
 		margin: auto;
 	}
