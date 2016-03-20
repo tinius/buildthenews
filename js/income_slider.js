@@ -63,11 +63,11 @@ function update_percentage(income_percentile) {
   			console.log(123)
   		}
   		else {
-  			d3.select("#income_percentile").text(data[i].PercentilePoint + "%");
+  			d3.select("#income_percentile").text(data[i-1].PercentilePoint + "%");
   		}
   		d3.select("#income_slider").property("value", income_percentile);
   		d3.select("#money_amount").text("£" + numberWithCommas(slider_position.value));
-		people_pictogram(data[i].PercentilePoint); 	
+		people_pictogram(data[i-1].PercentilePoint); 	
   		break;
   	}
   }
@@ -85,12 +85,12 @@ function people_pictogram(percentage) {
 			if ((i < percentage) && (slider_position.value != 0)) {
 				console.log(percentage)
 				for (var j = 0; j < person[i].childNodes.length; j++) {
-					person[i].childNodes[j].style.fill = "yellow" //cannot afford
+					person[i].childNodes[j].style.fill = "lightblue" //cannot afford
 				}
 			}
 			else {
 				for (var j = 0; j < person[i].childNodes.length; j++) {
-					person[i].childNodes[j].style.fill = "black"; //cannot afford
+					person[i].childNodes[j].style.fill = "#014636"; //cannot afford
 				}
 			}
 		}

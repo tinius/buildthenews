@@ -34,8 +34,8 @@ var map = new L.Map('map', {zoom : 2, center: [43.555073, 2.580898]});
 map.getPanes().tilePane.style.zIndex=650;
 map.getPanes().tilePane.style.pointerEvents = 'none';
 
-var GOOD_COLOUR = '#ffffad';
-var BAD_COLOUR = '#ffd51c';
+var GOOD_COLOUR = 'lightblue';
+var BAD_COLOUR = '#014636';
 var NO_DATA_COLOUR = '#eee';
 
 //map.getPane('labels').style.zIndex = 650;
