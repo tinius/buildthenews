@@ -14,7 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+      <video id="headline_video" width = "100%" autoplay muted>
+        <source  src="assets/video/headline_video.mov" type="video/mp4">
+      </video>
 
+<div id="container">
     <h2>Spousal visas: Applications and rejections</h2>
     <div id="map"></div>
 
@@ -53,7 +57,14 @@
       <div id="output"></div>
 
     </div><!-- #savings-calculator -->
-
+</div>
+    <script>
+      document.getElementById('headline_video').addEventListener('ended',myHandler,false);
+      function myHandler(e) {
+        e.target.style.opacity = "0";
+        document.getElementById('container').style.opacity = "1";
+      }
+    </script>
     <script src="js/savingscalculator.js"></script>
     <script src="js/rejections_map.js"></script>
     <script src="js/income_slider.js"></script>
