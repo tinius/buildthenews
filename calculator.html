@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+div#output {
+  margin: 1em, auto;
+
+}
+
+</style>
+
+<script>
+something = function() {
+  div = document.getElementById('output')
+
+  x = parseInt(document.getElementById('user-guess').value)
+  q = 1.005
+
+  var result = (Math.log(  ((q - 1) * 62500) / x + 1)/Math.log(q))/12
+
+  div.innerHTML = 'It would take you ' +result+ ' years to save the &pound;62,500 needed to settle your spouse in the UK'
+
+  console.log(result)
+  return false
+};
+
+anotherThing = function() {
+  x = parseInt(document.getElementById('user-guess').value)
+  q = 1.005
+
+  x50 = (x/12) * 0.5
+  x30 = (x/12) * 0.3
+  x10 = (x/12) * 0.1
+
+  basicPlan = Math.round((Math.log(  ((q - 1) * 62500) / x10 + 1)/Math.log(q))/12)
+  standardPlan = Math.round((Math.log(  ((q - 1) * 62500) / x30 + 1)/Math.log(q))/12)
+  premiumPlan = Math.round((Math.log(  ((q - 1) * 62500) / x50 + 1)/Math.log(q))/12)
+
+  //basic = document.getElementById('basic')
+  //standard = document.getElementById('standard')
+  //premium = document.getElementById('premium')
+
+  //basicString = "For £" + x10 + " a month"
+  //standardString = "For £" + x30 + " a month"
+  //premiumString = "For £" + x50 + " a month"
+
+  //basicP = document.createElement('p')
+  //standardP = document.createElement('p')
+  //premiumP = document.createElement('p')
+
+  //basicP.appendChild(basicString)
+  //standardP.appendChild(standardString)
+  //premiumP.appendChild(premiumString)
+
+  //basic.innerHTML = basicP
+  //standard.innerHTML = standardP
+  //premium.innerHTML = premiumP
+
+  console.log(basicPlan, standardPlan, premiumPlan)
+  return false
+};
+</script>
+
+
+
+</head>
+<body>
+  <h1>Monthly Subscription for Love</h1>
+  <h2>How much can you afford to save each month?</h2>
+
+  <form onsubmit="return anotherThing()">
+    <input id="user-guess" type="text">
+    <button type="submit" id="go_button">Go</button>
+  </form>
+
+  <div id="output"></div>
+
+  <div id="basic">
+    <h3>Basic</h3>
+    <p>Move in with your partner before you retire.</p>
+  </div>
+
+  <div id="standard">
+    <h3>Standard</h3>
+    <p>Move in with your partner before your children leave home</p>
+  </div>
+
+  <div id="premium">
+    <h3>Premium</h3>
+    <p>Move in with you partner before your children start school</p>
+  </div>
+
+
+
+</body>
+</html>
