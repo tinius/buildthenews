@@ -12,7 +12,7 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
 
 input#user-guess {
@@ -37,7 +37,7 @@ button#go_button {
 something = function() {
   div = document.getElementById('output')
 
-  x = parseInt(document.getElementById('user-guess').value)
+  x = parseInt(document.getElementById('user_guess').value)
   q = 1.005
 
   var result = Math.round((Math.log(  ((q - 1) * 62500) / x + 1)/Math.log(q))/12)
@@ -91,17 +91,17 @@ anotherThing = function() {
 <body>
 
   <div id="savings-calculator">
-  <h1>Monthly Subscription for Love</h1>
-  <h2>How much can you afford to save each month?</h2>
+    <h1>Monthly Subscription for Love</h1>
+    <h2>How much can you afford to save each month?</h2>
 
-  <form onsubmit="return something()">
-    <input id="user-guess" type="text">
-    <button type="submit" id="go_button">Go</button>
-  </form>
+    <form onsubmit="return something()">
+      <input id="user-guess" type="text">
+      <button type="submit" id="go_button">Go</button>
+    </form>
 
-  <div id="output"></div>
+    <div id="output"></div>
 
-</div><!-- #savings-calculator -->
+  </div><!-- #savings-calculator -->
 
 
 </body>
