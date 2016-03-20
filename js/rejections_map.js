@@ -70,7 +70,7 @@ var gDomain = [15, 325];
 
 var rScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(rDomain);
 var aScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(aDomain);
-var gScale = chroma.scale([GOOD_COLOUR, BAD_COLOUR]).domain(gDomain);
+var gScale = chroma.scale([BAD_COLOUR, GOOD_COLOUR]).domain(gDomain);
 
 var aLayer = null;
 var rLayer = null;
@@ -126,7 +126,7 @@ var styleByApplications = function(feature){
 
 }
 
-var getGdpList = function(minApplications){
+var getGdpLists = function(minApplications, size){
 
 	var l = [];
 
@@ -136,11 +136,16 @@ var getGdpList = function(minApplications){
 		}
 	}
 
+	console.log("full list: " + l.length);
+
 	l.sort(function(a, b){
 		return b.rejectionRate - a.rejectionRate;
 	});
 
-	return l;
+	console.log(size);
+	console.log(l.slice(size));
+
+	return [l.slice(0, size), l.slice(-size)]
 }
 
 queue()
@@ -186,9 +191,11 @@ queue()
 			}
 		}
 
-		var gdpList = getGdpList(200);
+		var lists = getGdpLists(200, 5);
+		var top5 = lists[0];
+		var bottom5 = lists[1];
 
-		for(var item of gdpList){
+		for(var item of top5){
 			var tr = document.createElement('tr');
 			tr.innerHTML = '<td>' + item.countryName + '</td><td>' + prettify(item.rejectionRate) + '</td><td>'
 			+ item.gdpPerCapita + '</td>';
