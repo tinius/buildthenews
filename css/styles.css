@@ -141,13 +141,15 @@ button#go_button {
   text-transform: uppercase;
   height: 3em;
   border: 5px solid rgb(1, 70, 54);
+  background-color: rgb(1, 70, 54);
   box-sizing: border-box;
   vertical-align: baseline;
   background-color: #fff;
 }
 
 div#savings_calculator {
-
+	border: solid 2px lightblue;
+	background-color: #e5e5e5;
 	padding: 10px;
 
 }
