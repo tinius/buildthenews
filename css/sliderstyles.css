@@ -51,6 +51,10 @@ li {
 	margin: auto;
 }
 
+.person {
+	width: 5%;
+}
+
 /* Info text */
 
 #money_threshold_slider_graphic {
@@ -87,7 +91,6 @@ li {
 #threshold_text {
 	width: 100%;
 	background: #eee;
-	height: 1em;
 	padding: 0.1em;
 	margin: 0.5em auto;
 	-webkit-transition: opacity 1s ease-in-out;
@@ -97,4 +100,12 @@ li {
     transition: opacity 1s ease-in-out;
 }
 
+@media screen and (max-width: 720px) {
+	#people_vis, .slider_ticks_div, #income_slider, #threshold_text  {
+		width: 90%;
+	}
 
+	#threshold_text {
+		margin-bottom: 1em;
+	}
+}

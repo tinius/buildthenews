@@ -5,14 +5,27 @@ var slider_max = 120000
 
 var data
 
-var width = 100+"%"
-var height = 360
+var width = 100+"%";
+var height = 260;
+
+var ppr = 20;
+var vbw = 520;
+var vbh = 340;
+
+var mq = window.matchMedia('(max-width: 720px)');
+
+if(mq.matches) {
+	ppr = 10;
+	vbw = 260;
+	vbh = 680;
+	height = 360;
+}
 
 var svg = d3.select("#people_vis")
 			.append("svg")
 			.attr("width", width)
 			.attr("height", height)
-			.attr("viewbox", "0 0 100 100")
+			.attr("viewBox", "0 0 " + vbw + " " + vbh)
 
 var y_coord = 0
 var x_coord = -1
@@ -33,7 +46,7 @@ for (var i = 0; i < 100; i++) {
 		c0-4.8,0-9.6,0-14.4c-1,0-1-0.1-2-0.1c0,13.4,0,26.8,0,40.1c0,1.1-1.1,1.9-2.2,1.9c-1.1,0-2-0.8-2.3-1.9c0.1-7.4,0.2-14.7,0.2-22.1\
 		c-0.6,0-1.3-0.1-1.9-0.1")
 		.attr("class", "body")
-	if ((i % 20 === 0) && (i != 0)) {
+	if ((i % ppr === 0) && (i != 0)) {
 		y_coord +=1
 		x_coord = -1
 	}
@@ -43,10 +56,10 @@ for (var i = 0; i < 100; i++) {
 
 //get data
 d3.csv("income_percentile_points.csv")
-	.row(function(d) { 
+	.row(function(d) {
 		return(d)
 	})
-    .get(function(error, rows) { 
+    .get(function(error, rows) {
     	data = rows
     	setTimeout(update_percentage(18600), 3000)
     });
@@ -68,7 +81,7 @@ function update_percentage(income_percentile) {
   		}
   		d3.select("#income_slider").property("value", income_percentile);
   		d3.select("#money_amount").text("£" + numberWithCommas(slider_position.value));
-		people_pictogram(data[i].PercentilePoint); 	
+		people_pictogram(data[i].PercentilePoint);
   		break;
   	}
   }
@@ -98,7 +111,7 @@ function people_pictogram(percentage) {
 	}
 }
 
-// 
+//
 function show_thresholds(slider_value) {
 
 	if (slider_value <= 18600) {
@@ -127,5 +140,3 @@ function show_thresholds(slider_value) {
 slider_position.max = slider_max;
 
 //set initial slider position
-
-
