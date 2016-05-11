@@ -170,10 +170,6 @@
       gif.style.display="block";
       gif.onload = function(){
         headerImage.src=gif.src;
-        setTimeout(function(){
-          document.getElementById('headline_video').style.opacity = '0';
-          document.getElementById('container').style['margin-top'] = "0";
-        }, 10000);
       };
       /* document.getElementById('headline_video').setAttribute("preload", "none")
       document.getElementById('headline_video').setAttribute("controls", true) */
