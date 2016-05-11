@@ -17,7 +17,7 @@
 
 <body>
 
-  <video id="headline_video" width = "100%" controls poster="assets/headline_video_poster.png">
+  <video id="headline_video" width = "100%" autoplay poster="assets/headline_video_poster.png">
     <source  src="assets/video/headline_video.mp4" type="video/mp4">
   </video>
 
@@ -161,10 +161,9 @@
     <script src="js/rejections_map.js"></script>
     <script src="js/income_slider.js"></script>
     <script>
-    var mq = window.matchMedia( "(min-width: 720px)" );
+    var mq = window.matchMedia( "(max-width: 720px)" );
     if (mq.matches) {
-
-      document.getElementById('headline_video').play();
+      document.getElementById('headline_video').setAttribute("controls")
     }
 
     document.getElementById('headline_video').addEventListener('ended',myHandler,false);
