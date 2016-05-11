@@ -163,7 +163,7 @@
     <script>
     var mq = window.matchMedia( "(max-width: 720px)" );
     if (mq.matches) {
-      document.getElementById('headline_video').setAttribute("controls")
+      document.getElementById('headline_video').setAttribute("controls", true)
     }
 
     document.getElementById('headline_video').addEventListener('ended',myHandler,false);
