@@ -26,6 +26,11 @@ body {
 
 	border: solid #014636 0.25em;
 	background-color: #014636;
+	margin-bottom: 0;
+}
+
+#byline {
+	text-align: right;
 	margin-bottom: 30vh;
 }
 
