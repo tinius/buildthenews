@@ -172,6 +172,10 @@ div#container {
 
 }
 
+img#headline_gif {
+	display: none;
+}
+
 @media screen and (max-width: 720px) {
 	#map {
 		height: 80vh;
@@ -182,7 +186,16 @@ div#container {
 	div#container {
 		width: 95%;
 		opacity: 1;
-		margin-top: calc(100vw*9/16 + 1em);
+		margin-top: 0;
+	}
+
+	video#headline_video {
+		display: none;
+	}
+
+	img#headline_gif {
+		display: block;
+		width: 100%;
 	}
 
 }

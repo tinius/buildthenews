@@ -16,10 +16,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
-  <video id="headline_video" width = "100%" autoplay poster="assets/postermov.png">
-    <source  src="assets/video/headline_video.m4v" type="video/mp4">
-    <img src="assets/postermov.png">
-  </video>
+  <div id='header-wrapper'>
+	  <video id="headline_video" width = "100%" autoplay poster="assets/postermov.png">
+	    <source  src="assets/video/headline_video.m4v" type="video/mp4">
+	  </video>
+	  <img id='headline_gif' src="assets/postermov.png">
+  </div>
 
     <div id="container">
 
@@ -164,21 +166,23 @@
     var mq = window.matchMedia( "(max-width: 720px)" );
     if (mq.matches) {
       document.querySelector('#headline_video source').style.display = "none";
-      var headerImage = document.querySelector('#headline_video img');
+      var headerImage = document.querySelector('#headline_gif');
       var gif = new Image();
       gif.src = 'assets/headlinegif.gif';
       gif.style.display="block";
       gif.onload = function(){
         headerImage.src=gif.src;
       };
-      /* document.getElementById('headline_video').setAttribute("preload", "none")
-      document.getElementById('headline_video').setAttribute("controls", true) */
     }
 
-    document.getElementById('headline_video').addEventListener('ended',myHandler,false);
-    function myHandler(e) {
+    else {
+      document.getElementById('headline_video').addEventListener('ended',myHandler,false);
+      function myHandler(e) {
       e.target.style.opacity = "0";
       document.getElementById('container').style['margin-top'] = "0";
+    }
+      /* document.getElementById('headline_video').setAttribute("preload", "none")
+      document.getElementById('headline_video').setAttribute("controls", true) */
     }
     </script>
 
