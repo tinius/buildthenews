@@ -85,7 +85,7 @@ li {
 /* threshold styles */
 
 #threshold_text {
-	width: 27em;
+	width: 100%;
 	background: #eee;
 	height: 1em;
 	padding: 0.1em;
