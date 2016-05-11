@@ -16,9 +16,9 @@
 
 <body>
 
-  <video id="headline_video" width = "100%" autoplay muted>
+  <video id="headline_video" width = "100%" autoplay muted poster="assets/headline_video_poster.png">
     <source  src="assets/video/headline_video.mov" type="video/mp4">
-    </video>
+  </video>
 
     <div id="container">
 
@@ -163,7 +163,7 @@
     document.getElementById('headline_video').addEventListener('ended',myHandler,false);
     function myHandler(e) {
       e.target.style.opacity = "0";
-      document.getElementById('container').style.opacity = "1";
+      document.getElementById('container').style['margin-top'] = "0";
     }
     </script>
 

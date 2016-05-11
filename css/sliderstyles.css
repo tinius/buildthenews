@@ -28,7 +28,8 @@
 	width: 100%;
 	background: #eee;
 	font-size: 1.4em;
-	margin-bottom: -0.5em
+	margin-bottom: -0.5em;
+	padding: 0.25em;
 }
 
 li {

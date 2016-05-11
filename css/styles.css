@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: sans-serif;
+}
+
 h1 {
 	font-size: 2.6em;
 }
@@ -159,21 +163,12 @@ video#headline_video {
 }
 
 div#container {
-	/* position: absolute;
-	top: 1080;
+	margin-top: 100vh;
 
-	-webkit-transition: top 0.5s ease-out 2s;
-	-moz-transition: top 0.5s ease-out 2s;
-	-o-transition: top 0.5s ease-out 2s;
-	transition: top 0,5s ease-out 2s; */
-
-
-	opacity: 0;
-
-	-webkit-transition: opacity 0.5s ease-out 2s;
-	-moz-transition: opacity 0.5s ease-out 2s;
-	-o-transition: opacity 0.5s ease-out 2s;
-	transition: opacity 0,5s ease-out 2s;
+	-webkit-transition: margin-top 0.8s ease-in-out 2.5s;
+	-moz-transition: margin-top 0.8s ease-in-out 2.5s;
+	-o-transition: margin-top 0.8s ease-in-out 2.5s;
+	transition: margin-top 0.8s ease-in-out 2.5s;
 
 }
 
@@ -187,9 +182,7 @@ div#container {
 	div#container {
 		width: 95%;
 		opacity: 1;
+		margin-top: calc(100vw*9/16 + 1em);
 	}
 
-	#headline_video {
-		display: none;
-	}
 }
