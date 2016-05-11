@@ -120,7 +120,7 @@ p a:hover {
 /* Calculator CSS */
 
 div#output {
-  margin: 1em, auto;
+  margin-top: 1em;
 }
 
 input:focus,
@@ -134,7 +134,7 @@ input#user_guess {
   border: 5px solid rgb(1, 70, 54);
   height: 3em;
   box-sizing: border-box;
-  vertical-align: -1px;
+  margin-top: -1px;
 }
 
 button#go_button {
