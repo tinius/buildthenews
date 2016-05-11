@@ -37,6 +37,8 @@ li {
 	margin: 0.5em 0em;
 }
 
+
+
 /* MAP LEGEND */
 .legend_span {
 	font-size: 0.8em;
@@ -102,12 +104,4 @@ li {
     transition: opacity 1s ease-in-out;
 }
 
-@media screen and (max-width: 720px) {
-	#people_vis, .slider_ticks_div, #income_slider, #threshold_text  {
-		width: 90%;
-	}
 
-	#threshold_text {
-		margin-bottom: 1em;
-	}
-}
