@@ -18,7 +18,7 @@
 <body>
   <video id="headline_video" width = "100%" autoplay poster="assets/postermov.png">
     <source  src="assets/video/headline_video.m4v" type="video/mp4">
-    <img src="assets/headlinegif.gif">
+    <img src="assets/postermov.png">
   </video>
 
     <div id="container">
@@ -164,11 +164,14 @@
     var mq = window.matchMedia( "(max-width: 720px)" );
     if (mq.matches) {
       document.querySelector('#headline_video source').style.display = "none";
-      var gif = document.querySelector('#headline_video img');
+      var headerImage = document.querySelector('#headline_video img');
+      var gif = new Image();
+      gif.src = 'assets/headlinegif.gif';
       gif.style.display="block";
       gif.onload = function(){
+        headerImage.src=gif.src;
         setTimeout(function(){
-          document.querySelector('#headline_video img').style.opacity = '0';
+          document.getElementById('headline_video').style.opacity = '0';
           document.getElementById('container').style['margin-top'] = "0";
         }, 10000);
       };
