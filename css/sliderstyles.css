@@ -32,6 +32,10 @@
 	padding: 0.25em;
 }
 
+em {
+	font-weight: 100;
+}
+
 li {
 	margin: 0.5em 0em;
 }
