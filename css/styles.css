@@ -160,7 +160,7 @@ div#savings_calculator h3{
 
 video#headline_video {
 	opacity: 1;
-	z-index: 2000;
+	z-index: -1;
 	position: absolute;
 	top: 0;
 
