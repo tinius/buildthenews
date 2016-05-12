@@ -225,10 +225,9 @@ img#headline_gif {
 	margin-bottom: 1em;
 }
 
-.quote_attribution 
+.quote_attribution {
 	padding: 0.5em 0em;
 	text-align: right;
-	font-style: italic;
 	font-size: 0.7em;
 	line-height: 1em;
 	font-weight: 400;
